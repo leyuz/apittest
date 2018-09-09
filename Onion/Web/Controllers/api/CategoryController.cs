@@ -4,7 +4,7 @@ using apitest1.Onion.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace apitest1.api.Controllers {
-    [Route ("api/category")]
+    [Route ("api/categories")]
     public class CategoryApiController : Controller {
         private readonly ICategoryService _categoryService;
 
