@@ -12,3 +12,8 @@ C:\Users\Leyu\Google Drive\netprojs\apittest\Tests\obj\Debug\netcoreapp2.1\Tests
 C:\Users\Leyu\Google Drive\netprojs\apittest\Tests\obj\Debug\netcoreapp2.1\Tests.AssemblyInfo.cs
 C:\Users\Leyu\Google Drive\netprojs\apittest\Tests\obj\Debug\netcoreapp2.1\Tests.dll
 C:\Users\Leyu\Google Drive\netprojs\apittest\Tests\obj\Debug\netcoreapp2.1\Tests.pdb
+c:\Users\Leyu\Google Drive\netprojs\apittest\Tests\bin\Debug\netcoreapp2.1\apitest1.Views.dll
+c:\Users\Leyu\Google Drive\netprojs\apittest\Tests\bin\Debug\netcoreapp2.1\apitest1.Views.pdb
+c:\Users\Leyu\Google Drive\netprojs\apittest\Tests\bin\Debug\netcoreapp2.1\apitest1.dll
+c:\Users\Leyu\Google Drive\netprojs\apittest\Tests\bin\Debug\netcoreapp2.1\apitest1.pdb
+c:\Users\Leyu\Google Drive\netprojs\apittest\Tests\obj\Debug\netcoreapp2.1\Tests.csproj.CopyComplete

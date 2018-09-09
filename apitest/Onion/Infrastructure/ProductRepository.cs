@@ -25,7 +25,14 @@ namespace apittest.Onion.Infrastructure {
             throw new System.NotImplementedException ();
         }
         public IEnumerable<Product> GetProducts () {
-            throw new System.NotImplementedException ();
+            var result = _productContext.Products;
+            return result;
+        }
+        public void Seed (List<Product> productList) {
+            {
+                _productContext.Products.AddRange (productList);
+                _productContext.SaveChanges ();
+            }
         }
     }
 }

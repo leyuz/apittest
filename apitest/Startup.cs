@@ -41,7 +41,7 @@ namespace apitest1 {
                 o.ViewLocationFormats.Add ("onion/web/views/Shared/{0}" + RazorViewEngine.ViewExtension);
             });
             // Databases
-            services.AddDbContext<ProductContext> (options => options.UseInMemoryDatabase ("test"));
+            services.AddDbContext<ProductContext> (options => options.UseSqlServer (Configuration.GetConnectionString ("SimpleToDo")));
 
         }
 
