@@ -8,10 +8,10 @@ using apittest.Onion.Infrastructure.DatabaseOperations;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 namespace Tests {
+    public class DatabaseFixure : IDisposable {
+        public ProductRepository Repo { get; private set; }
+        public DatabaseFixure () {
 
-    public class ProductRepositoryTest {
-        ProductRepository Repo;
-        public ProductRepositoryTest () {
             Repo = CreateSUT ();
             //Arrange
             var productList = new List<Product> {
@@ -20,6 +20,22 @@ namespace Tests {
             };
             //Act
             Repo.Seed (productList);
+        }
+        public void Dispose () {
+            Repo = null;
+        }
+        private ProductRepository CreateSUT () {
+            var dbOptions = new DbContextOptionsBuilder<ProductContext> ()
+                .UseInMemoryDatabase (databaseName: "ProductDb")
+                .Options;
+            var context = new ProductContext (dbOptions);
+            return new ProductRepository (context);
+        }
+    }
+    public class ProductRepositoryTest : IClassFixture<DatabaseFixure> {
+        ProductRepository Repo;
+        public ProductRepositoryTest (DatabaseFixure fixure) {
+            Repo = fixure.Repo;
         }
 
         [Fact]
@@ -36,12 +52,6 @@ namespace Tests {
             //Assert
             Assert.True (Repo.GetProducts ().Count () > 0);
         }
-        private ProductRepository CreateSUT () {
-            var dbOptions = new DbContextOptionsBuilder<ProductContext> ()
-                .UseInMemoryDatabase (databaseName: "ProductDb")
-                .Options;
-            var context = new ProductContext (dbOptions);
-            return new ProductRepository (context);
-        }
+
     }
 }
