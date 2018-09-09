@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using apittest.Onion.Core.Entities;
 
 namespace apittest.Onion.Core.Repositories {
@@ -6,7 +7,7 @@ namespace apittest.Onion.Core.Repositories {
         void Add (Product p);
         void Edit (Product p);
         void Remove (int Id);
-        IEnumerable GetProducts ();
+        IEnumerable<Product> GetProducts ();
         Product FindById (int Id);
     }
 }
