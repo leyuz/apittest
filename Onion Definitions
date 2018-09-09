@@ -1,0 +1,43 @@
+https://stackoverflow.com/questions/19824550/asp-net-mvc-with-service-layer-and-repository-layer-where-should-the-interfaces
+
+
+Introduction
+This is something I've asked myself as well. One burning question I always have is similar to yours;
+
+what would a good naming convention be?
+
+How should I name things? Should they go in folders or projects?
+
+After searching around I suspect the answer is that it doesn't really matter. What's important is that you solution has some sensible architecture and that you try to follow good practices such as SOLID.
+
+My ASP.NET MVC heroes on this topic are Jeffrey Palermo, Steve Smith and Jimmy Bogard.
+
+Onion Architecture
+Jeffrey Palermo discusses a combination of old ideas but brings them together and gives it the visually stimulating name of Onion Architecture (a recommended read). Jeffrey shows a good approach to the problem of where to put things. He explains that at the centre (or top) of your application you have your Core. This layer is where you should put interfaces such as IRepository and IService.
+
+Almost all of your interfaces should go in the core and everything else (other projects) can all reference the core. This way everything knows the skeletal structure of the application without knowing the implementation details.
+
+Onion Architecture overview
+
+Try to have your UI layer reference as little as possible (within reason). In one of my applications my UI (MVC) layer only references the Core. Everything it needs is injected into it with Dependency Injection.
+
+Steve Smith discusses Onion Architecture and similar ideas with demonstrations in MVC Solution Best Practices: A solution to the solution problem
+
+My solution
+In my MVC solutions I have a typical structure like this:
+
+MyProject.Core
+MyProject.Domain
+MyProject.DependencyInjection
+MyProject.Infrastructure
+MyProject.Web
+MyProject.Tests
+The Core contains my interfaces. It is usually divided up into folders like Services, Models, Domain, Repositories and so on.
+
+The Domain layer references only the core and contains my implementation. It provides a lot of the concrete classes for the domain abstraction in the core. It deals with a lot of business logic, processing, command handling, manager classes, concrete service implementations and so on. I consider it a fairly inner-layer and so it references as little as possible.
+
+The DependencyInjection layer contains my chosen DI package/framework and implementation details. I consider it an outer layer; similar to UI or Infrastructure and so it's ok if it references a lot. It's not necessary for this layer to be a separate project and many people will tell you not to do this. That's ok; do what works for the complexity of your project. I like my DI to be its own thing. The good thing about it being so separate is that I could replace the DI framework with a different one and things would be fine. No layers reference the DI project.
+
+The Infrastructure layer contains information about logging, emailing and data access. It will contain my ORM of choice. It's not business-logic stuff and it's not UI stuff. It's the railroad of my solution to get things done. It's on the outer layer but it only references the Core.
+
+The Web layer is my MVC project and only references the Core.

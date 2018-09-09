@@ -1,0 +1,10 @@
+﻿@using apitest1.Onion.Domain.Models;
+@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Category Services";
+}
+<h2>@ViewData["Title"]</h2>
+
+<p>Category.</p>
+<p>@Model.Count()</p>
+<p>@Model.First().Name</p>
