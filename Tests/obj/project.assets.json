@@ -1681,6 +1681,19 @@
         "build": {
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "apitest1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "2.1.0"
+        },
+        "compile": {
+          "bin/placeholder/apitest1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/apitest1.dll": {}
+        }
       }
     }
   },
@@ -5729,12 +5742,18 @@
         "xunit.runner.visualstudio.2.3.1.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "apitest1/1.0.0": {
+      "type": "project",
+      "path": "../apitest/apitest1.csproj",
+      "msbuildProject": "../apitest/apitest1.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.NET.Test.Sdk >= 15.8.0",
       "Microsoft.NETCore.App >= 2.1.0",
+      "apitest1 >= 1.0.0",
       "xunit >= 2.3.1",
       "xunit.runner.visualstudio >= 2.3.1"
     ]
@@ -5746,11 +5765,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Leyu\\Google Drive\\netprojs\\apittest\\apitest.Test\\apitest.Test.csproj",
-      "projectName": "apitest.Test",
-      "projectPath": "C:\\Users\\Leyu\\Google Drive\\netprojs\\apittest\\apitest.Test\\apitest.Test.csproj",
+      "projectUniqueName": "c:\\Users\\Leyu\\Google Drive\\netprojs\\apittest\\Tests\\Tests.csproj",
+      "projectName": "Tests",
+      "projectPath": "c:\\Users\\Leyu\\Google Drive\\netprojs\\apittest\\Tests\\Tests.csproj",
       "packagesPath": "C:\\Users\\Leyu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Leyu\\Google Drive\\netprojs\\apittest\\apitest.Test\\obj\\",
+      "outputPath": "c:\\Users\\Leyu\\Google Drive\\netprojs\\apittest\\Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5768,7 +5787,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "c:\\Users\\Leyu\\Google Drive\\netprojs\\apittest\\apitest\\apitest1.csproj": {
+              "projectPath": "c:\\Users\\Leyu\\Google Drive\\netprojs\\apittest\\apitest\\apitest1.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
