@@ -6,6 +6,7 @@ using apitest1.Onion.Core.Services;
 using apitest1.Onion.Domain.Models;
 using apitest1.Onion.Domain.Services;
 using apittest.Onion.Infrastructure.DatabaseOperations;
+using apittest.Onion.Infrastructure.DatabaseOperations.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -37,8 +38,8 @@ namespace apitest1 {
 
             services.Configure<RazorViewEngineOptions> (o => {
                 o.ViewLocationFormats.Clear ();
-                o.ViewLocationFormats.Add ("onion/web/views/{1}/{0}" + RazorViewEngine.ViewExtension);
-                o.ViewLocationFormats.Add ("onion/web/views/Shared/{0}" + RazorViewEngine.ViewExtension);
+                o.ViewLocationFormats.Add ("Onion/Web/Views/{1}/{0}" + RazorViewEngine.ViewExtension);
+                o.ViewLocationFormats.Add ("Onion/Web/Views/Shared/{0}" + RazorViewEngine.ViewExtension);
             });
             // Databases
             services.AddDbContext<ProductContext> (options => options.UseSqlServer (Configuration.GetConnectionString ("SimpleToDo")));

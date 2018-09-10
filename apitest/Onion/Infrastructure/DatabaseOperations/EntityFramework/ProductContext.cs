@@ -3,7 +3,7 @@ using apittest.Onion.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols;
 
-namespace apittest.Onion.Infrastructure.DatabaseOperations {
+namespace apittest.Onion.Infrastructure.DatabaseOperations.EntityFramework {
     public class ProductContext : DbContext {
         public ProductContext (DbContextOptions<ProductContext> options) : base (options) {
 

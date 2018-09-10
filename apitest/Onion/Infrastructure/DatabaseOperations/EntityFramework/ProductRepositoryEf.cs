@@ -5,11 +5,11 @@ using apittest.Onion.Core.Entities;
 using apittest.Onion.Core.Repositories;
 using apittest.Onion.Infrastructure.DatabaseOperations;
 
-namespace apittest.Onion.Infrastructure {
-    public class ProductRepository : IProductRepository {
+namespace apittest.Onion.Infrastructure.DatabaseOperations.EntityFramework {
+    public class ProductRepositoryEf : IProductRepository {
         private readonly ProductContext _productContext;
 
-        public ProductRepository (ProductContext productContext) {
+        public ProductRepositoryEf (ProductContext productContext) {
             _productContext = productContext;
         }
         public void Add (Product p) {
