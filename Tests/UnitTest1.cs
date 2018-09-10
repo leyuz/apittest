@@ -7,50 +7,59 @@ using apittest.Onion.Infrastructure;
 using apittest.Onion.Infrastructure.DatabaseOperations;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
-namespace Tests {
-    public class DatabaseFixure : IDisposable {
+namespace Tests
+{
+    public class DatabaseFixure : IDisposable
+    {
         public ProductRepository Repo { get; private set; }
-        public DatabaseFixure () {
+        public DatabaseFixure()
+        {
 
-            Repo = CreateSUT ();
+            Repo = CreateSUT();
             //Arrange
             var productList = new List<Product> {
                 new Product { Id = 1, inStock = true, Name = "Test1", Price = 999 },
                 new Product { Id = 2, inStock = false, Name = "out of stock", Price = 100 }
             };
             //Act
-            Repo.Seed (productList);
+            Repo.Seed(productList);
         }
-        public void Dispose () {
+        public void Dispose()
+        {
             Repo = null;
         }
-        private ProductRepository CreateSUT () {
-            var dbOptions = new DbContextOptionsBuilder<ProductContext> ()
-                .UseInMemoryDatabase (databaseName: "ProductDb")
+        private ProductRepository CreateSUT()
+        {
+            var dbOptions = new DbContextOptionsBuilder<ProductContext>()
+                .UseInMemoryDatabase(databaseName: "ProductDb")
                 .Options;
-            var context = new ProductContext (dbOptions);
-            return new ProductRepository (context);
+            var context = new ProductContext(dbOptions);
+            return new ProductRepository(context);
         }
     }
-    public class ProductRepositoryTest : IClassFixture<DatabaseFixure> {
+    public class ProductRepositoryTest : IClassFixture<DatabaseFixure>
+    {
         ProductRepository Repo;
-        public ProductRepositoryTest (DatabaseFixure fixure) {
+        public ProductRepositoryTest(DatabaseFixure fixure)
+        {
             Repo = fixure.Repo;
         }
 
         [Fact]
-        public void IsRepositoryInitalizeWithValidNumberOfData () {
-            var result = Repo.GetProducts ();
-            Assert.NotNull (result);
-            var numberOfRecords = result.ToList ().Count;
-            Assert.Equal (2, numberOfRecords);
+        public void IsRepositoryInitalizeWithValidNumberOfData()
+        {
+            var result = Repo.GetProducts();
+            Assert.NotNull(result);
+            var numberOfRecords = result.ToList().Count;
+            Assert.Equal(2, numberOfRecords);
         }
 
         [Fact]
-        public void CreateToDoList_WithValidObject_NewListIdIsNotEqualsToZero () {
+        public void CreateToDoList_WithValidObject_NewListIdIsNotEqualsToZero()
+        {
 
             //Assert
-            Assert.True (Repo.GetProducts ().Count () > 0);
+            Assert.True(Repo.GetProducts().Count() > 0);
         }
 
     }
